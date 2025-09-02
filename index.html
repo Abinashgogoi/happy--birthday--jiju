@@ -1,54 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <title>Happy Birthday, Jiju — The Code of Family</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  :root{
-    --bg:#0b0f14; --panel:#0f1722; --text:#e6f1ff; --muted:#9fb3c8; --accent:#64ffda;
-    --good:#22c55e; --warn:#f59e0b; --love:#ef4444;
-  }
+  :root{--bg:#0b0f14;--panel:#0f1722;--text:#e6f1ff;--muted:#9fb3c8;--accent:#64ffda}
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;background:radial-gradient(1000px 600px at 70% -10%,#122033 0%,#0b0f14 60%);color:var(--text);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial}
   .stage{position:relative;min-height:100vh;overflow:hidden}
-  /* overlay start screen */
-  .gate{
-    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    backdrop-filter:blur(2px);background:linear-gradient(180deg,rgba(7,12,18,.85),rgba(7,12,18,.6));
-    text-align:center;padding:24px;z-index:20
-  }
+  .gate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        backdrop-filter:blur(2px);background:linear-gradient(180deg,rgba(7,12,18,.85),rgba(7,12,18,.6));
+        text-align:center;padding:24px;z-index:20}
   .gate h1{margin:0 0 8px;font-size:clamp(24px,4vw,44px)}
   .gate p{color:var(--muted);margin:0 0 16px}
-  .gate button{
-    padding:12px 18px;border-radius:12px;border:1px solid var(--accent);background:transparent;color:var(--accent);
-    font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,.35)
-  }
-  .hud{
-    position:fixed;top:12px;left:12px;right:12px;display:flex;gap:8px;align-items:center;z-index:15;
-  }
-  .chip{
-    border:1px solid #1f2a3a;background:#0f1722;border-radius:999px;color:var(--muted);
-    padding:6px 10px;font-size:12px;display:flex;gap:8px;align-items:center
-  }
+  .gate button{padding:12px 18px;border-radius:12px;border:1px solid var(--accent);background:transparent;color:var(--accent);
+               font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+  .hud{position:fixed;top:12px;left:12px;right:12px;display:flex;gap:8px;align-items:center;z-index:15}
+  .chip{border:1px solid #1f2a3a;background:#0f1722;border-radius:999px;color:var(--muted);padding:6px 10px;font-size:12px;display:flex;gap:8px;align-items:center}
   .btn{cursor:pointer;color:var(--accent)}
   .progress{flex:1;height:6px;border-radius:999px;background:#1f2a3a;overflow:hidden}
   .bar{height:100%;background:linear-gradient(90deg,#37c8ab,#64ffda);width:0%}
   .lang{gap:6px}
-  .lang button{
-    padding:6px 10px;border-radius:999px;border:1px solid #284055;background:#0f1722;color:#9cc3ff;cursor:pointer
-  }
+  .lang button{padding:6px 10px;border-radius:999px;border:1px solid #284055;background:#0f1722;color:#9cc3ff;cursor:pointer}
   .lang button.active{border-color:var(--accent);color:var(--accent)}
-  /* slide panel */
-  .panel{
-    position:absolute;inset:0;display:grid;place-items:center;padding:20px;opacity:0;transform:translateY(10px);
-    transition:opacity .7s ease, transform .7s ease
-  }
+  .panel{position:absolute;inset:0;display:grid;place-items:center;padding:20px;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
   .panel.show{opacity:1;transform:translateY(0)}
-  .card{
-    width:min(920px,92vw);background:rgba(15,23,34,.75);
-    border:1px solid #1f2a3a;border-radius:20px;padding:24px 22px;box-shadow:0 20px 80px rgba(0,0,0,.45)
-  }
+  .card{width:min(920px,92vw);background:rgba(15,23,34,.75);border:1px solid #1f2a3a;border-radius:20px;padding:24px 22px;box-shadow:0 20px 80px rgba(0,0,0,.45)}
   .title{font-weight:800;margin:6px 0 12px;font-size:clamp(20px,3.5vw,36px);color:#eef6ff}
   .subtitle{margin:0 0 16px;color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#dbeafe;white-space:pre-wrap;line-height:1.6;background:#0b1420;border:1px dashed #243143;border-radius:14px;padding:14px}
@@ -56,31 +34,27 @@
   @keyframes blink{50%{opacity:0}}
   .tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .tag{border:1px solid #284055;color:#9cc3ff;padding:6px 10px;border-radius:999px;font-size:12px}
-  /* balloons */
   .balloon{position:absolute;bottom:-140px;width:64px;height:86px;border-radius:48% 52% 50% 50%;
-    background:radial-gradient(35% 35% at 30% 25%,rgba(255,255,255,.75),transparent 60%), var(--c,#ff6b6b);
-    filter:drop-shadow(0 10px 10px rgba(0,0,0,.3));animation:floatUp 10s linear infinite;opacity:.9
-  }
+           background:radial-gradient(35% 35% at 30% 25%,rgba(255,255,255,.75),transparent 60%), var(--c,#ff6b6b);
+           filter:drop-shadow(0 10px 10px rgba(0,0,0,.3));animation:floatUp 10s linear infinite;opacity:.9}
   .balloon:after{content:"";position:absolute;left:50%;bottom:-22px;width:2px;height:22px;background:#aaa}
   @keyframes floatUp{to{transform:translateY(-120vh) scale(1.08)}}
-  /* confetti */
   .confetti{position:fixed;top:-8px;width:8px;height:8px;background:red;opacity:.8;animation:fall 4.5s linear forwards}
   @keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
-  /* footer badge */
   .foot{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-size:12px;color:#8aa0b6}
+  .qrwrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+  .qrwrap img{width:160px;height:160px;border-radius:12px;border:1px solid #243143;background:#0b1420;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .qrwrap .hint{color:#9fb3c8;font-size:14px;text-align:center}
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
-
-  <!-- TAP-TO-START (unlocks audio autoplay on mobile) -->
   <div class="gate" id="gate">
     <h1>🎉 Happy Birthday, Jiju!</h1>
     <p>Tap <b>Start</b> to begin the animated greeting (1–2 min) with music.</p>
     <button id="startBtn">Start ▶</button>
   </div>
 
-  <!-- HUD -->
   <div class="hud">
     <div class="chip"><span id="timer">00:00</span></div>
     <div class="progress"><div class="bar" id="bar"></div></div>
@@ -92,20 +66,23 @@
     <div class="chip"><span class="btn" id="muteBtn">🔊</span></div>
   </div>
 
-  <!-- Slides -->
   <div id="slides"></div>
-
   <div class="foot">— From Abinash • The Code of Family</div>
 </div>
 
-<!-- Background music (replace src with your MP3 if you like) -->
+<!-- Your background music -->
 <audio id="bgm" preload="auto" loop>
-  <!-- lightweight data-uri tone (fallback); replace with your real track for richer music -->
-  <source src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAA..." type="audio/mp3">
+  <source src="assets/Happy%20Birthday%20Song%20for%20Pabitra%20Vindow%20(Jija).mp3" type="audio/mp3" />
 </audio>
 
 <script>
-/* ----------------- CONTENT (EN / HI / AS) ----------------- */
+/* ====== CONFIG ====== */
+/* Your video lives at: song/vindow brithday.mp4 (with a space).
+   We URL-encode the space and turn the path into an ABSOLUTE URL
+   so the QR works on every device (GitHub Pages or local). */
+const VIDEO_REL_PATH = "song/vindow%20brithday.mp4";
+
+/* Strings (EN/HI/AS) */
 const L = {
   en: [
     {t:"To the man who makes our world brighter,", s:"Happy Birthday, Jiju!", sub:"“Beyond a title, you are the true definition of an elder brother.”", kind:"title"},
@@ -145,9 +122,9 @@ return "আনন্দ • স্বাস্থ্য • অসংখ্য �
   ]
 };
 
-/* ---------- scene timings (approx total ~95–115s) ---------- */
+/* ---------- scene timings ---------- */
 const SCENES = [
-  {type:"codeIntro", dur:12},     // typewriter intro
+  {type:"codeIntro", dur:12},
   {type:"title", idx:0, dur:10},
   {type:"text", idx:1, dur:10},
   {type:"text", idx:2, dur:12},
@@ -155,7 +132,7 @@ const SCENES = [
   {type:"list", idx:4, dur:12},
   {type:"codeBlock", idx:5, dur:12},
   {type:"quote", idx:6, dur:12},
-  {type:"finale", idx:7, dur:12}
+  {type:"finale", idx:7, dur:14} // a bit longer for QR scan
 ];
 
 const slidesEl = document.getElementById('slides');
@@ -165,174 +142,105 @@ const timerEl = document.getElementById('timer');
 const barEl = document.getElementById('bar');
 const bgm = document.getElementById('bgm');
 const muteBtn = document.getElementById('muteBtn');
-let LANG = 'en';
-let t0=0, elapsed=0, totalDur=SCENES.reduce((a,s)=>a+s.dur,0);
-let playing=false, sceneIndex=-1, sceneTime=0, rafId=null;
+let LANG='en', elapsed=0, totalDur=SCENES.reduce((a,s)=>a+s.dur,0);
+let playing=false, sceneIndex=-1, sceneTime=0;
 
-/* ---------- language toggle ---------- */
+/* language toggle */
 document.querySelectorAll('.lang button').forEach(b=>{
   b.onclick=()=>{ document.querySelectorAll('.lang button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); LANG=b.dataset.lang; refreshCurrentSlideText(); }
 });
 
-/* ---------- start & audio ---------- */
+/* start & audio */
 startBtn.onclick= async ()=>{
   gate.style.display='none';
-  try{ await bgm.play(); }catch(e){} // mobile may need user gesture (we already had click)
-  playing=true;
-  nextScene();
-  tick();
+  try{ await bgm.play(); }catch(e){}
+  playing=true; nextScene(); tick();
 };
 
-/* ---------- mute ---------- */
-muteBtn.onclick=()=>{
-  bgm.muted=!bgm.muted; muteBtn.textContent = bgm.muted ? "🔈" : "🔊";
-};
+/* mute */
+muteBtn.onclick=()=>{ bgm.muted=!bgm.muted; muteBtn.textContent = bgm.muted ? "🔈" : "🔊"; };
 
-/* ---------- helpers ---------- */
-function fmt(s){const m=Math.floor(s/60), ss=String(Math.floor(s%60)).padStart(2,'0'); return `${String(m).padStart(2,'0')}:${ss}`;}
+/* helpers */
+const fmt=s=>`${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
 function updateHUD(){
   elapsed = SCENES.slice(0,sceneIndex).reduce((a,s)=>a+s.dur,0) + sceneTime;
   timerEl.textContent = fmt(elapsed);
-  barEl.style.width = `${Math.min(100, (elapsed/totalDur)*100)}%`;
+  barEl.style.width = `${Math.min(100,(elapsed/totalDur)*100)}%`;
 }
 
-/* ---------- balloons & confetti ---------- */
-function balloons(n=8){
-  for(let i=0;i<n;i++){
-    const b=document.createElement('div');
-    b.className='balloon';
-    b.style.left = (Math.random()*90+5)+'%';
-    b.style.animationDuration = (8+Math.random()*6)+'s';
-    b.style.setProperty('--c', `hsl(${Math.random()*360},80%,62%)`);
-    document.body.appendChild(b);
-    setTimeout(()=>b.remove(), 14000);
-  }
-}
-function confetti(n=140){
-  for(let i=0;i<n;i++){
-    const c=document.createElement('div');
-    c.className='confetti';
-    c.style.left=(Math.random()*100)+'%';
-    c.style.background=`hsl(${Math.random()*360},90%,60%)`;
-    c.style.animationDuration=(2.6+Math.random()*2.2)+'s';
-    c.style.width=c.style.height=(6+Math.random()*6)+'px';
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(), 5000);
-  }
-}
+/* fun bits */
+function balloons(n=8){for(let i=0;i<n;i++){const b=document.createElement('div');b.className='balloon';
+  b.style.left=(Math.random()*90+5)+'%';b.style.animationDuration=(8+Math.random()*6)+'s';
+  b.style.setProperty('--c',`hsl(${Math.random()*360},80%,62%)`);document.body.appendChild(b);
+  setTimeout(()=>b.remove(),14000);}}
+function confetti(n=140){for(let i=0;i<n;i++){const c=document.createElement('div');c.className='confetti';
+  c.style.left=(Math.random()*100)+'%';c.style.background=`hsl(${Math.random()*360},90%,60%)`;
+  c.style.animationDuration=(2.6+Math.random()*2.2)+'s';c.style.width=c.style.height=(6+Math.random()*6)+'px';
+  document.body.appendChild(c);setTimeout(()=>c.remove(),5000);}}
 
-/* ---------- slide builders ---------- */
+/* slide builders */
 function clearSlides(){ slidesEl.innerHTML=''; }
-function panel(html){
-  const p=document.createElement('div'); p.className='panel'; p.innerHTML = `<div class="card">${html}</div>`;
-  slidesEl.appendChild(p);
-  requestAnimationFrame(()=>p.classList.add('show'));
-  return p;
-}
-function textRow(title, body, sub=''){
-  return `<div class="title">${title}</div>
-          <div class="subtitle">${body}</div>
-          ${sub?`<div class="subtitle" style="opacity:.85">${sub}</div>`:''}`;
-}
-function listRow(title, body){
-  const parts = body.split('. ').filter(Boolean).map(x=>x.replace(/\.$/,''));
-  return `<div class="title">${title}</div>
-          <div class="tags">${parts.map(x=>`<span class="tag">${x.trim()}</span>`).join('')}</div>`;
-}
-function codeBox(title, code){
-  return `<div class="title">${title}</div>
-          <div class="mono"><span id="codeBlock"></span><span class="code-cursor"></span></div>`;
-}
-function quoteRow(title, body){
-  return `<div class="title">💌 ${title}</div>
-          <div class="subtitle" style="font-weight:700;color:#dbeafe">${body}</div>`;
-}
-function finaleRow(title, body, sub){
-  return `<div class="title">🌈 ${body}</div>
-          <div class="subtitle" style="margin-top:6px">${sub||''}</div>
-          <div class="mono" style="margin-top:14px"># Program Complete.<br>return "Happy Birthday, Jiju! 🎉"</div>`;
-}
+function panel(html){ const p=document.createElement('div'); p.className='panel'; p.innerHTML=`<div class="card">${html}</div>`;
+  slidesEl.appendChild(p); requestAnimationFrame(()=>p.classList.add('show')); return p; }
+const textRow=(t,s,sub='')=>`<div class="title">${t}</div><div class="subtitle">${s}</div>${sub?`<div class="subtitle" style="opacity:.85">${sub}</div>`:''}`;
+function listRow(t,s){ const parts=s.split('. ').filter(Boolean).map(x=>x.replace(/\.$/,'')); 
+  return `<div class="title">${t}</div><div class="tags">${parts.map(x=>`<span class="tag">${x.trim()}</span>`).join('')}</div>`; }
+const codeBox=(t,code)=>`<div class="title">${t}</div><div class="mono"><span id="codeBlock"></span><span class="code-cursor"></span></div>`;
+const quoteRow=(t,s)=>`<div class="title">💌 ${t}</div><div class="subtitle" style="font-weight:700;color:#dbeafe">${s}</div>`;
+const finaleRow=(t,s,sub)=>`<div class="title">🌈 ${s}</div><div class="subtitle" style="margin-top:6px">${sub||''}</div>
+  <div class="mono" style="margin-top:14px"># Program Complete.<br>return "Happy Birthday, Jiju! 🎉"</div>
+  <div class="qrwrap"><a id="qrlink" target="_blank" rel="noopener"><img id="qrimg" alt="Scan QR to watch the video"></a>
+  <div class="hint">Scan or tap the QR to play the birthday video</div></div>`;
 
-/* ---------- scene engine ---------- */
-function currentStrings(){ return L[LANG]; }
+/* engine */
+const currentStrings=()=>L[LANG];
 function refreshCurrentSlideText(){
-  // If a text panel is on screen, swap language dynamically
   const p=slidesEl.querySelector('.panel .card'); if(!p) return;
   const sc=SCENES[sceneIndex]; if(!sc) return;
-  if(sc.type==='title' || sc.type==='text'){
-    const d=currentStrings()[sc.idx];
-    p.querySelector('.title').textContent = (sc.type==='title' ? `${d.t}` : d.t);
-    p.querySelector('.subtitle').textContent = d.s;
-    const subs = p.querySelectorAll('.subtitle'); if(subs[1] && d.sub) subs[1].textContent = d.sub;
-  } else if(sc.type==='list'){
-    const d=currentStrings()[sc.idx];
-    p.innerHTML = listRow(d.t, d.s);
-  } else if(sc.type==='codeBlock'){
-    const d=currentStrings()[sc.idx];
-    p.innerHTML = codeBox(d.t, d.code);
-    typeCode(d.code, 22);
-  } else if(sc.type==='quote'){
-    const d=currentStrings()[sc.idx];
-    p.innerHTML = quoteRow(d.t, d.s);
-  } else if(sc.type==='finale'){
-    const d=currentStrings()[sc.idx];
-    p.innerHTML = finaleRow(d.t, d.s, d.sub);
-  }
+  if(sc.type==='title'||sc.type==='text'){
+    const d=currentStrings()[sc.idx]; p.querySelector('.title').textContent=d.t; p.querySelector('.subtitle').textContent=d.s;
+    const subs=p.querySelectorAll('.subtitle'); if(subs[1]&&d.sub) subs[1].textContent=d.sub;
+  }else if(sc.type==='list'){ const d=currentStrings()[sc.idx]; p.innerHTML=listRow(d.t,d.s);
+  }else if(sc.type==='codeBlock'){ const d=currentStrings()[sc.idx]; p.innerHTML=codeBox(d.t,d.code); typeCode(d.code,22);
+  }else if(sc.type==='quote'){ const d=currentStrings()[sc.idx]; p.innerHTML=quoteRow(d.t,d.s);
+  }else if(sc.type==='finale'){ const d=currentStrings()[sc.idx]; p.innerHTML=finaleRow(d.t,d.s,d.sub); }
 }
-
-function typeCode(text, speed=24){
-  const el = document.getElementById('codeBlock'); if(!el) return;
-  el.textContent = ''; let i=0;
-  (function step(){
-    el.textContent = text.slice(0, i++);
-    if(i<=text.length) setTimeout(step, speed);
-  })();
-}
+function typeCode(text,speed=24){ const el=document.getElementById('codeBlock'); if(!el) return; el.textContent=''; let i=0;
+  (function step(){ el.textContent=text.slice(0,i++); if(i<=text.length) setTimeout(step,speed); })(); }
 
 function nextScene(){
   sceneIndex++; sceneTime=0; clearSlides();
-  const sc = SCENES[sceneIndex]; if(!sc){ /* end */ confetti(200); balloons(10); return; }
-
-  // background celebration at specific scenes
+  const sc=SCENES[sceneIndex]; if(!sc){ confetti(200); balloons(10); return; }
   if(sc.type==='title') balloons(6);
   if(sc.type==='finale'){ confetti(160); balloons(10); }
 
-  // build panel
-  const d = currentStrings()[sc.idx||0];
-  let html='';
+  const d=currentStrings()[sc.idx||0];
+  let html=''; 
   if(sc.type==='codeIntro'){
-    html = `<div class="title">🎉 Happy Birthday, Jiju!</div>
-            <div class="mono" id="introMono"></div>`;
-    const p = panel(html);
-    const intro = `print("Loading... Birthday Program")\n\nclass Family:\n  def __init__(self):\n    self.members = ["Jiju"]\n\nprint("Bond Complete ✅")`;
-    let i=0; const m = p.querySelector('#introMono');
-    (function step(){ m.textContent = intro.slice(0, i++); if(i<=intro.length) setTimeout(step, 22); })();
-  }
-  else if(sc.type==='title') html = textRow(d.t, d.s, d.sub);
-  else if(sc.type==='text') html = textRow(d.t, d.s, d.sub);
-  else if(sc.type==='list') html = listRow(d.t, d.s);
-  else if(sc.type==='codeBlock'){ html = codeBox(d.t, d.code); }
-  else if(sc.type==='quote') html = quoteRow(d.t, d.s);
-  else if(sc.type==='finale') html = finaleRow(d.t, d.s, d.sub);
+    html=`<div class="title">🎉 Happy Birthday, Jiju!</div><div class="mono" id="introMono"></div>`;
+    const p=panel(html); const intro=`print("Loading... Birthday Program")\n\nclass Family:\n  def __init__(self):\n    self.members = ["Jiju"]\n\nprint("Bond Complete ✅")`;
+    let i=0; const m=p.querySelector('#introMono'); (function step(){ m.textContent=intro.slice(0,i++); if(i<=intro.length) setTimeout(step,22); })();
+  }else if(sc.type==='title') html=textRow(d.t,d.s,d.sub);
+  else if(sc.type==='text') html=textRow(d.t,d.s,d.sub);
+  else if(sc.type==='list') html=listRow(d.t,d.s);
+  else if(sc.type==='codeBlock') html=codeBox(d.t,d.code);
+  else if(sc.type==='quote') html=quoteRow(d.t,d.s);
+  else if(sc.type==='finale') html=finaleRow(d.t,d.s,d.sub);
+
   if(sc.type!=='codeIntro') panel(html);
-  if(sc.type==='codeBlock'){ typeCode(d.code, 22); }
+  if(sc.type==='codeBlock') typeCode(d.code,22);
+
+  /* build QR on finale */
+  if(sc.type==='finale'){
+    const absolute = new URL(VIDEO_REL_PATH, location.href).href; // make full URL
+    const qrlink=document.getElementById('qrlink'); if(qrlink) qrlink.href=absolute;
+    const img=document.getElementById('qrimg'); if(img) img.src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+encodeURIComponent(absolute);
+  }
 }
 
-function tick(){
-  if(!playing) return;
-  sceneTime += 0.1; // 100ms tick
-  updateHUD();
-  const sc = SCENES[sceneIndex];
-  if(sc && sceneTime >= sc.dur) nextScene();
-  rafId = setTimeout(tick, 100);
-}
-
-/* Keyboard: Space pause/resume */
-document.addEventListener('keydown', (e)=>{
-  if(e.code==='Space'){ e.preventDefault(); playing=!playing; if(playing) tick(); }
-});
-
-/* TIP: replace the <audio> source with your real MP3 for richer music */
+function tick(){ if(!playing) return; sceneTime+=0.1; updateHUD(); const sc=SCENES[sceneIndex]; if(sc&&sceneTime>=sc.dur) nextScene(); setTimeout(tick,100); }
+document.addEventListener('keydown',e=>{ if(e.code==='Space'){ e.preventDefault(); playing=!playing; if(playing) tick(); }});
 </script>
 </body>
 </html>
+
